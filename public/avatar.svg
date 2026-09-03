@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="sandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#faeed1"/>
+      <stop offset="100%" stop-color="#ebdcae"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="3" dy="3" stdDeviation="0" flood-color="#0f172a"/>
+    </filter>
+  </defs>
+
+  <!-- Background Sky & Sun -->
+  <rect width="400" height="500" fill="url(#skyGrad)"/>
+  <circle cx="310" cy="110" r="50" fill="#fde047" stroke="#0f172a" stroke-width="4"/>
+  <path d="M290,40 L300,55 M340,55 L330,70 M360,95 L375,95 M360,135 L375,140" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Clouds -->
+  <path d="M40,90 Q60,70 85,90 Q110,75 130,90 Q145,105 125,115 L50,115 Q30,105 40,90 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
+  <path d="M200,60 Q215,45 235,60 Q255,50 270,60 Q285,75 265,85 L210,85 Q190,75 200,60 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+
+  <!-- Ocean Waves -->
+  <path d="M0,260 Q100,240 200,260 T400,255 L400,340 L0,340 Z" fill="url(#oceanGrad)"/>
+  <path d="M0,265 Q100,245 200,265 T400,260" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.8"/>
+
+  <!-- Sand Dunes -->
+  <path d="M0,320 Q120,290 260,330 T400,310 L400,500 L0,500 Z" fill="url(#sandGrad)"/>
+  <path d="M0,320 Q120,290 260,330 T400,310" stroke="#0f172a" stroke-width="4" fill="none"/>
+
+  <!-- Developer Character -->
+  <!-- Body / Hoodie -->
+  <path d="M120,500 C120,410 145,370 200,370 C255,370 280,410 280,500 Z" fill="#0284c7" stroke="#0f172a" stroke-width="5" filter="url(#shadow)"/>
+  <path d="M170,375 L200,430 L230,375" stroke="#0f172a" stroke-width="4" fill="#38bdf8"/>
+  <path d="M185,410 L180,470 M215,410 L220,470" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Neck -->
+  <rect x="180" y="325" width="40" height="55" rx="8" fill="#fcd34d" stroke="#0f172a" stroke-width="4"/>
+
+  <!-- Head / Face -->
+  <rect x="145" y="180" width="110" height="150" rx="45" fill="#fcd34d" stroke="#0f172a" stroke-width="5" filter="url(#shadow)"/>
+
+  <!-- Ears -->
+  <circle cx="140" cy="255" r="14" fill="#fcd34d" stroke="#0f172a" stroke-width="4"/>
+  <circle cx="260" cy="255" r="14" fill="#fcd34d" stroke="#0f172a" stroke-width="4"/>
+
+  <!-- Hair -->
+  <path d="M135,210 C130,150 170,135 200,135 C240,135 270,155 265,210 C250,185 220,175 200,185 C180,175 150,185 135,210 Z" fill="#0f172a"/>
+  <!-- Front Hair Tuft -->
+  <path d="M175,185 Q190,165 205,185 Q220,165 235,188" stroke="#0f172a" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Cool Beach Sunglasses -->
+  <rect x="150" y="225" width="45" height="32" rx="8" fill="#0f172a"/>
+  <rect x="205" y="225" width="45" height="32" rx="8" fill="#0f172a"/>
+  <rect x="195" y="235" width="10" height="5" fill="#0f172a"/>
+  <!-- Sunglasses reflection -->
+  <path d="M155,232 L175,250 M165,232 L185,250" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M210,232 L230,250 M220,232 L240,250" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Smile -->
+  <path d="M185,285 Q200,298 215,285" stroke="#0f172a" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <!-- Blushing cheeks -->
+  <circle cx="160" cy="275" r="7" fill="#fb7185" opacity="0.7"/>
+  <circle cx="240" cy="275" r="7" fill="#fb7185" opacity="0.7"/>
+
+  <!-- Floating Palm Leaves in Foreground -->
+  <path d="M-10,480 Q60,430 110,470" stroke="#059669" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M410,460 Q340,420 300,460" stroke="#059669" stroke-width="8" stroke-linecap="round" fill="none"/>
+
+  <!-- Badge Tag -->
+  <g transform="translate(115, 30)">
+    <rect width="170" height="34" rx="10" fill="#fffdf5" stroke="#0f172a" stroke-width="3" filter="url(#shadow)"/>
+    <text x="85" y="22" font-family="monospace" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">DEVELOPER AVATAR</text>
+  </g>
+</svg>

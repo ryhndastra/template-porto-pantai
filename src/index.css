@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #071b2f;
+    --bg-secondary: #0d2844;
+    --card-surface: #123559;
+    --card-hover: #18426d;
+    --card-border: #224c75;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-sand: #ecd8b9;
+    --accent-blue: #0284c7;
+    --accent-blue-hover: #0369a1;
+    --accent-water: #38bdf8;
+    --accent-sand: #d4b27d;
+    --accent-sand-hover: #c49e62;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  code,
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #071b2f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #224c75;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+@keyframes waveWaterRoll {
+  0% {
+    background-position: 0px 0px, 0% 50%;
+  }
+
+  100% {
+    background-position: 120px 0px, 0% 50%;
+  }
+}
+
+@keyframes waveWaterRiseAndRoll {
+  0% {
+    background-position: 0px 35px, 0% 0%;
+  }
+
+  28% {
+    background-position: 25px 0px, 0% 50%;
+  }
+
+  100% {
+    background-position: 145px 0px, 0% 50%;
+  }
+}
+
+.wave-text-half {
+  position: relative;
+  display: inline-block;
+  color: #f8fafc;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0,17 C30,10 60,24 90,17 C105,13 115,21 120,17 L120,40 L0,40 Z' fill='%2367e8f9'/%3E%3Cpath d='M0,20 C30,14 60,26 90,20 C105,17 115,23 120,20 L120,40 L0,40 Z' fill='%230284c7'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #ffffff 0%, #ffffff 49%, #0284c7 50%, #02587a 100%);
+  background-size: 120px 100%, 100% 200%;
+  background-position: 0px 35px, 0% 0%;
+  background-repeat: repeat-x, no-repeat;
+  transition: font-weight 0.2s ease;
+}
+
+.wave-text-half:hover {
+  animation: waveWaterRiseAndRoll 2.4s ease-out infinite;
+}
+
+.wave-text-half.is-active {
+  background-position: 0px 0px, 0% 50%;
+  animation: waveWaterRoll 2s linear infinite;
+  font-weight: 700;
+}

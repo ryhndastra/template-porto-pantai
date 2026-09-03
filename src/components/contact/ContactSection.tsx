@@ -78,7 +78,7 @@ export const ContactSection: React.FC = () => {
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
-        className="absolute top-20 right-8 sm:right-24 z-30 cursor-pointer group"
+        className="absolute top-12 sm:top-20 right-4 sm:right-24 z-30 cursor-pointer group scale-75 sm:scale-100 origin-top-right"
         onClick={handleSubmarineClick}
         title="Klik kapal selam!"
       >
@@ -120,7 +120,7 @@ export const ContactSection: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-12 space-y-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-12 space-y-6 sm:space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,48 +131,48 @@ export const ContactSection: React.FC = () => {
             stiffness: 220,
             damping: 24
           }}
-          className="p-8 sm:p-12 rounded-[36px] bg-[#fffdf5] border-3 border-[#0f172a] shadow-[10px_10px_0px_#0f172a] space-y-8"
+          className="p-5 sm:p-12 rounded-[24px] sm:rounded-[36px] bg-[#fffdf5] border-2 sm:border-3 border-[#0f172a] shadow-[6px_6px_0px_#0f172a] sm:shadow-[10px_10px_0px_#0f172a] space-y-5 sm:space-y-8"
         >
           {/* header */}
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#fde047] text-[#0f172a] text-xs font-mono font-black border-2 border-[#0f172a] shadow-[3px_3px_0px_#0f172a] w-fit">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
+              <div className="flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#fde047] text-[#0f172a] text-xs font-mono font-black border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] w-fit">
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>05 // KONTAK & KOLABORASI</span>
+                <span>KONTAK</span>
               </div>
 
-              <div className="px-3 py-1 rounded-xl bg-[#dcfce7] border-2 border-[#0f172a] text-xs font-mono font-black text-[#15803d] shadow-[2px_2px_0px_#0f172a]">
+              <div className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-[#dcfce7] border-2 border-[#0f172a] text-[10px] sm:text-xs font-mono font-black text-[#15803d] shadow-[2px_2px_0px_#0f172a]">
                 STATUS: TERSEDIA
               </div>
             </div>
 
-            <div className="space-y-2">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0f172a] tracking-tight leading-[1.08]">
-                Mari Berdiskusi & Berkolaborasi
+            <div className="space-y-1 sm:space-y-2">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#0f172a] tracking-tight leading-[1.08]">
+                Mari Berdiskusi &amp; Berkolaborasi
               </h2>
-              <p className="text-sm sm:text-base text-[#475569] font-medium leading-relaxed max-w-2xl">
-                Punya ide proyek, kebutuhan rekayasa web/mobile, atau peluang kolaborasi? Hubungi saya langsung melalui kanal di bawah.
+              <p className="text-xs sm:text-base text-[#475569] font-medium leading-relaxed max-w-2xl">
+                Punya ide proyek, kebutuhan rekayasa web/mobile, atau peluang kolaborasi? Hubungi saya langsung melalui email dan topik di bawah.
               </p>
             </div>
           </div>
 
           {/* bento grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 items-stretch">
             {/* email and topic station */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: 0.15 }}
-              className="md:col-span-7 p-6 rounded-3xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-5"
+              className="md:col-span-7 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[3px_3px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-4 sm:space-y-5"
             >
-              <div className="space-y-3">
-                <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#64748b]">
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#64748b]">
                   Pilih Topik Diskusi
                 </div>
 
                 {/* topic buttons */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {inquiryTopics.map((topic) => {
                     const isSelected = selectedTopic.id === topic.id;
                     return (
@@ -180,10 +180,11 @@ export const ContactSection: React.FC = () => {
                         key={topic.id}
                         type="button"
                         onClick={() => setSelectedTopic(topic)}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border-2 transition-all cursor-pointer ${isSelected
-                          ? 'bg-[#0284c7] text-white border-[#0f172a] shadow-[2px_2px_0px_#0f172a]'
-                          : 'bg-[#fffdf5] text-[#0f172a] border-[#0f172a] shadow-[2px_2px_0px_#0f172a] hover:bg-[#fde047]'
-                          }`}
+                        className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-mono font-bold border-2 transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#0284c7] text-white border-[#0f172a] shadow-[2px_2px_0px_#0f172a]'
+                            : 'bg-[#fffdf5] text-[#0f172a] border-[#0f172a] shadow-[1.5px_1.5px_0px_#0f172a] hover:bg-[#fde047]'
+                        }`}
                       >
                         {topic.label}
                       </button>
@@ -194,27 +195,27 @@ export const ContactSection: React.FC = () => {
 
               {/* send email and copy button group */}
               <div className="space-y-2 pt-2 border-t-2 border-[#0f172a]/10">
-                <div className="flex flex-wrap items-center gap-2.5">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full">
                   <a
                     href={mailtoLink}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#fde047] hover:bg-[#facc15] text-[#0f172a] font-mono font-black text-xs sm:text-sm transition-all cursor-pointer border-2 border-[#0f172a] shadow-[3px_3px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a]"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-[#fde047] hover:bg-[#facc15] text-[#0f172a] font-mono font-black text-xs sm:text-sm transition-all cursor-pointer border-2 border-[#0f172a] shadow-[2.5px_2.5px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a] w-full sm:w-auto shrink-0 whitespace-nowrap"
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4 shrink-0" />
                     <span>Kirim Email</span>
                   </a>
 
                   <button
                     type="button"
                     onClick={() => copy(profileData.contact.email)}
-                    className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-xs sm:text-sm transition-all cursor-pointer border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-xs sm:text-sm transition-all cursor-pointer border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] w-full sm:w-auto shrink-0 whitespace-nowrap"
                     title="Salin alamat email"
                   >
-                    <Mail className="w-4 h-4 text-[#0284c7]" />
+                    <Mail className="w-4 h-4 text-[#0284c7] shrink-0" />
                     <span>{profileData.contact.email}</span>
                     {copied ? (
-                      <Check className="w-4 h-4 text-[#15803d] ml-1" />
+                      <Check className="w-4 h-4 text-[#15803d] ml-1 shrink-0" />
                     ) : (
-                      <Copy className="w-4 h-4 text-[#64748b] ml-1" />
+                      <Copy className="w-4 h-4 text-[#64748b] ml-1 shrink-0" />
                     )}
                   </button>
                 </div>
@@ -246,10 +247,10 @@ export const ContactSection: React.FC = () => {
                 {/* status, clock and socials */}
                 <div
                   style={{ backfaceVisibility: 'hidden' }}
-                  className="w-full h-full p-6 rounded-3xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-4"
+                  className="w-full h-full p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[3px_3px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-3.5 sm:space-y-4"
                 >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-2xl bg-[#fffdf5] border-2 border-[#0f172a]">
+                  <div className="space-y-2.5 sm:space-y-3">
+                    <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#fffdf5] border-2 border-[#0f172a]">
                       <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#475569]">
                         <Clock className="w-4 h-4 text-[#0284c7]" />
                         <span>Waktu Lokal (WIB)</span>
@@ -261,31 +262,31 @@ export const ContactSection: React.FC = () => {
 
                     <div className="flex items-center gap-2 text-xs font-mono text-[#475569] px-1">
                       <MapPin className="w-4 h-4 text-[#ef4444] shrink-0" />
-                      <span>Indonesia • Remote & Hybrid Ready</span>
+                      <span>Indonesia • Remote &amp; Hybrid Ready</span>
                     </div>
                   </div>
 
                   <div className="space-y-2 pt-2 border-t-2 border-[#0f172a]/10">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#64748b]">
-                        Socials & Profil
+                      <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#64748b]">
+                        Socials &amp; Profil
                       </span>
                       <button
                         type="button"
                         onClick={() => setIsFlipped(true)}
-                        className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#0284c7] hover:text-[#0f172a] cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono font-bold text-[#0284c7] hover:text-[#0f172a] cursor-pointer"
                       >
                         <span>Pesan Rahasia</span>
                         <RotateCw className="w-3 h-3" />
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                       <a
                         href={profileData.contact.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-xs transition-all border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a] flex items-center justify-between group"
+                        className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-[11px] sm:text-xs transition-all border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a] flex items-center justify-between group"
                       >
                         <div className="flex items-center gap-1.5">
                           <svg className="w-3.5 h-3.5 text-[#0f172a]" fill="currentColor" viewBox="0 0 24 24">
@@ -300,7 +301,7 @@ export const ContactSection: React.FC = () => {
                         href={profileData.contact.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-xs transition-all border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a] flex items-center justify-between group"
+                        className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-[#fffdf5] hover:bg-[#fde047] text-[#0f172a] font-mono font-bold text-[11px] sm:text-xs transition-all border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0f172a] flex items-center justify-between group"
                       >
                         <div className="flex items-center gap-1.5">
                           <svg className="w-3.5 h-3.5 text-[#0284c7]" fill="currentColor" viewBox="0 0 24 24">
@@ -320,7 +321,7 @@ export const ContactSection: React.FC = () => {
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
                   }}
-                  className="absolute inset-0 p-6 rounded-3xl bg-[#fde047] border-2 border-[#0f172a] shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-3"
+                  className="absolute inset-0 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#fde047] border-2 border-[#0f172a] shadow-[3px_3px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a] flex flex-col justify-between space-y-3"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -354,19 +355,25 @@ export const ContactSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.3 }}
-          className="p-5 sm:p-6 rounded-[28px] bg-[#fffdf5] border-3 border-[#0f172a] shadow-[6px_6px_0px_#0f172a] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-bold text-[#475569]"
+          className="p-4 sm:p-6 rounded-2xl sm:rounded-[28px] bg-[#fffdf5] border-2 sm:border-3 border-[#0f172a] shadow-[4px_4px_0px_#0f172a] sm:shadow-[6px_6px_0px_#0f172a] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs font-mono font-bold text-[#475569]"
         >
-          <div className="flex items-center gap-2 text-[#0f172a]">
-            <Sparkles className="w-4 h-4 text-[#f59e0b]" />
-            <span>&copy; {new Date().getFullYear()} {profileData.name} • Full-Stack & Mobile Developer</span>
+          <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 text-[#0f172a] text-center sm:text-left">
+            <div className="flex items-center justify-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#f59e0b] shrink-0" />
+              <span>&copy; {new Date().getFullYear()} {profileData.name}</span>
+              <span className="hidden sm:inline text-[#64748b]">•</span>
+            </div>
+            <span className="text-[10px] sm:text-xs text-[#64748b] sm:text-[#0f172a] font-normal sm:font-bold">
+              Full-Stack &amp; Mobile Developer
+            </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-[#64748b] hidden md:inline">Built with React, Vite & Tailwind CSS</span>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <span className="text-[#64748b] hidden md:inline">Built with React, Vite &amp; Tailwind CSS</span>
             <button
               type="button"
               onClick={scrollToTop}
-              className="px-3.5 py-1.5 rounded-xl bg-[#fff9d4] hover:bg-[#fde047] text-[#0f172a] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] transition-all cursor-pointer flex items-center gap-1.5"
+              className="px-4 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl bg-[#fff9d4] hover:bg-[#fde047] text-[#0f172a] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] transition-all cursor-pointer flex items-center justify-center gap-1.5 font-mono font-bold text-xs"
             >
               <span>Ke Atas</span>
               <ArrowUp className="w-3.5 h-3.5" />

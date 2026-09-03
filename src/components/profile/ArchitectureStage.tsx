@@ -36,14 +36,16 @@ export const ArchitectureStage: React.FC<ArchitectureStageProps> = ({ isFlooded 
     }
   ];
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
+
   return (
     <motion.div
       animate={
         isFlooded
           ? {
-            rotate: 15,
-            x: 28,
-            y: 50,
+            rotate: isMobile ? 3 : 15,
+            x: isMobile ? 0 : 28,
+            y: isMobile ? 16 : 50,
             scale: 0.98,
             transition: { type: 'spring', stiffness: 150, damping: 16 }
           }

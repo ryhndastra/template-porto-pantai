@@ -19,6 +19,7 @@ export interface Project {
   isMobileApp?: boolean;
   demoStatusLabel?: string;
   imageUrl: string;
+  imageFit?: 'cover' | 'contain';
   featured: boolean;
   metrics: { label: string; value: string }[];
 }

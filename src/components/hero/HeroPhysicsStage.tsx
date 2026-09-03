@@ -54,6 +54,7 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
     const [duckExpression, setDuckExpression] = useState<DuckExpression>('normal');
     const duckImpactTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const lastRippleTimeRef = useRef<number>(0);
+    const returnTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const updateDuckExpression = useCallback((expr: DuckExpression) => {
       setDuckExpression(expr);
@@ -65,6 +66,9 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
     const resolveCollisions = useCallback(
       (sourceId: string, centerX: number, centerY: number, intensity: number = 1): boolean => {
         let didHitAny = false;
+        const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
+        const minThreshold = isMobile ? 65 : 130;
+        const maxDisplacement = isMobile ? 18 : 50;
 
         setLetters((prev) => {
           return prev.map((other) => {
@@ -87,23 +91,21 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
               dist = Math.sqrt(dx ** 2 + dy ** 2);
             }
 
-            const minThreshold = 140;
-
             if (dist < minThreshold) {
               didHitAny = true;
               const overlap = (minThreshold - dist) / minThreshold;
-              const force = overlap * 80 * Math.max(0.8, intensity);
+              const force = overlap * (isMobile ? 35 : 70) * Math.max(0.8, intensity);
 
               const pushX = (dx / dist) * force;
               const pushY = (dy / dist) * (force * 0.85);
-              const wobbleAngle = (dx > 0 ? 12 : -12) * overlap * Math.max(0.8, intensity);
+              const wobbleAngle = (dx > 0 ? 10 : -10) * overlap * Math.max(0.8, intensity);
 
-              onRipple(otherCenterX, otherCenterY, 65);
+              onRipple(otherCenterX, otherCenterY, 55);
 
               return {
                 ...other,
-                posX: other.posX + pushX,
-                posY: other.posY + pushY,
+                posX: Math.max(-maxDisplacement, Math.min(maxDisplacement, other.posX + pushX)),
+                posY: Math.max(-maxDisplacement, Math.min(maxDisplacement, other.posY + pushY)),
                 wobble: wobbleAngle
               };
             }
@@ -111,6 +113,12 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
             return other;
           });
         });
+
+        // decay displacement back to home position
+        if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
+        returnTimeoutRef.current = setTimeout(() => {
+          setLetters((prev) => prev.map((l) => ({ ...l, posX: 0, posY: 0, wobble: 0 })));
+        }, 1200);
 
         return didHitAny;
       },
@@ -204,19 +212,23 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
           const dy = letterCenterY - duckY;
           const dist = Math.sqrt(dx ** 2 + dy ** 2);
 
-          if (dist < 105 && dist > 0) {
+          const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
+          const hitThreshold = isMobile ? 55 : 105;
+          const maxDisplacement = isMobile ? 18 : 45;
+
+          if (dist < hitThreshold && dist > 0) {
             moved = true;
             didHitLetter = true;
-            const pushY = dy >= 0 ? 22 : -22;
-            const pushX = dx >= 0 ? 14 : -6;
-            const wobble = dy >= 0 ? 10 : -10;
+            const pushY = dy >= 0 ? (isMobile ? 10 : 22) : (isMobile ? -10 : -22);
+            const pushX = dx >= 0 ? (isMobile ? 8 : 14) : (isMobile ? -4 : -6);
+            const wobble = dy >= 0 ? 8 : -8;
 
             onRipple(letterCenterX, letterCenterY, 55);
 
             return {
               ...letter,
-              posX: letter.posX + pushX,
-              posY: letter.posY + pushY,
+              posX: Math.max(-maxDisplacement, Math.min(maxDisplacement, letter.posX + pushX)),
+              posY: Math.max(-maxDisplacement, Math.min(maxDisplacement, letter.posY + pushY)),
               wobble
             };
           }
@@ -233,6 +245,11 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
         duckImpactTimeoutRef.current = setTimeout(() => {
           updateDuckExpression('normal');
         }, 900);
+
+        if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
+        returnTimeoutRef.current = setTimeout(() => {
+          setLetters((prev) => prev.map((l) => ({ ...l, posX: 0, posY: 0, wobble: 0 })));
+        }, 1200);
       }
     };
 
@@ -274,7 +291,7 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
           }}
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 1.25 }}
-          className="relative inline-block cursor-grab active:cursor-grabbing select-none p-3 -m-3 mx-1 sm:mx-2 md:mx-3 pointer-events-auto"
+          className="relative inline-block cursor-grab active:cursor-grabbing select-none p-1 sm:p-2.5 mx-0.5 sm:mx-1.5 md:mx-2.5 pointer-events-auto"
         >
           <motion.div
             animate={
@@ -297,25 +314,25 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
             <div className="absolute -bottom-3 left-2 right-2 h-3 bg-[#0284c7]/50 rounded-full blur-[3px]" />
 
             <span
-              className="absolute top-2 left-0.5 text-5xl sm:text-7xl md:text-8xl font-black text-[#041628] tracking-tight select-none pointer-events-none"
+              className="absolute top-1 sm:top-2 left-0.5 text-[40px] min-[390px]:text-[48px] sm:text-7xl md:text-8xl font-black text-[#041628] tracking-tight select-none pointer-events-none"
               aria-hidden="true"
             >
               {letter.char}
             </span>
             <span
-              className="absolute top-1.5 left-0.5 text-5xl sm:text-7xl md:text-8xl font-black text-[#0369a1] tracking-tight select-none pointer-events-none"
+              className="absolute top-0.5 sm:top-1.5 left-0.5 text-[40px] min-[390px]:text-[48px] sm:text-7xl md:text-8xl font-black text-[#0369a1] tracking-tight select-none pointer-events-none"
               aria-hidden="true"
             >
               {letter.char}
             </span>
             <span
-              className="absolute top-0.5 left-0 text-5xl sm:text-7xl md:text-8xl font-black text-[#0284c7] tracking-tight select-none pointer-events-none"
+              className="absolute top-0.5 left-0 text-[40px] min-[390px]:text-[48px] sm:text-7xl md:text-8xl font-black text-[#0284c7] tracking-tight select-none pointer-events-none"
               aria-hidden="true"
             >
               {letter.char}
             </span>
 
-            <span className="relative z-10 block text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight drop-shadow-[0_6px_16px_rgba(2,132,199,0.35)]">
+            <span className="relative z-10 block text-[40px] min-[390px]:text-[48px] sm:text-7xl md:text-8xl font-black text-white tracking-tight drop-shadow-[0_6px_16px_rgba(2,132,199,0.35)]">
               {letter.char}
             </span>
           </motion.div>
@@ -325,7 +342,7 @@ export const HeroPhysicsStage = forwardRef<HeroPhysicsStageHandle, HeroPhysicsSt
 
     return (
       <div className="relative z-20 w-full flex flex-col items-center justify-center">
-        <div className="flex flex-wrap items-center justify-center gap-y-4 gap-x-6 sm:gap-x-10 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-y-0.5 sm:gap-y-0 gap-x-4 sm:gap-x-8 md:gap-x-10 py-1 sm:py-6 max-w-full px-1">
           <div className="flex items-center justify-center">
             {word1.map(renderLetter)}
           </div>

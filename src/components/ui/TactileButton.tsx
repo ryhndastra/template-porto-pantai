@@ -15,7 +15,7 @@ export const TactileButton: React.FC<TactileButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-colors select-none cursor-pointer';
+  const baseStyles = 'inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl font-medium text-xs sm:text-sm transition-colors select-none cursor-pointer';
   
   const variantStyles = {
     primary: 'bg-[#0284c7] hover:bg-[#0369a1] text-white border border-[#38bdf8] shadow-md shadow-[#0284c7]/20',

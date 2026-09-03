@@ -206,7 +206,7 @@ export const SwimmingDuck: React.FC<SwimmingDuckProps> = ({
     const heroHeight = heroRect ? heroRect.height : (typeof window !== 'undefined' ? window.innerHeight : 800);
     const heroWidth = heroRect ? heroRect.width : (typeof window !== 'undefined' ? window.innerWidth : 1400);
 
-    const topBaseline = heroHeight * 0.44;
+    const topBaseline = heroHeight * (heroWidth < 640 ? 0.28 : 0.44);
     const minY = -topBaseline + 60;
     const maxY = heroHeight - topBaseline - 70;
     const minX = -40;
@@ -245,9 +245,6 @@ export const SwimmingDuck: React.FC<SwimmingDuckProps> = ({
       style={{
         x,
         y,
-        left: 0,
-        top: '46%',
-        position: 'absolute',
         touchAction: 'none'
       }}
       animate={{
@@ -259,7 +256,7 @@ export const SwimmingDuck: React.FC<SwimmingDuckProps> = ({
       }}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 1.35 }}
-      className="cursor-grab active:cursor-grabbing select-none pointer-events-auto p-4 -m-4"
+      className="absolute top-[28%] sm:top-[44%] left-0 cursor-grab active:cursor-grabbing select-none pointer-events-auto p-4 -m-4"
     >
       <motion.div
         animate={
@@ -282,7 +279,7 @@ export const SwimmingDuck: React.FC<SwimmingDuckProps> = ({
           duration: isWaddling ? 0.42 : 3.2,
           ease: 'easeInOut'
         }}
-        className="relative group"
+        className="relative group scale-[0.62] sm:scale-100 origin-center"
       >
         <div className="absolute -bottom-2 left-2 right-2 h-3 bg-[#04101e]/60 rounded-full blur-[2px]" />
 

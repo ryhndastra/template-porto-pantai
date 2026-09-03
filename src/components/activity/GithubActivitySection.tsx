@@ -77,28 +77,28 @@ export const GithubActivitySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ type: 'spring', stiffness: 200, damping: 22, delay: 0.1 }}
-          className="mt-10 sm:mt-12 rounded-[32px] p-6 sm:p-9 bg-[#fffdf5] border-2 border-[#0f172a] shadow-[6px_6px_0px_#0f172a]"
+          className="mt-8 sm:mt-12 rounded-[24px] sm:rounded-[32px] p-4 sm:p-9 bg-[#fffdf5] border-2 border-[#0f172a] shadow-[4px_4px_0px_#0f172a] sm:shadow-[6px_6px_0px_#0f172a]"
         >
           {/* control bar with clean username and year pills */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#e8dbc0]">
-            <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-[#e8dbc0]">
+            <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-2.5 w-full sm:w-auto">
               <a
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#fff9d4] hover:bg-[#fff0b3] border-2 border-[#0f172a] text-[#0f172a] text-xs font-mono font-bold shadow-[2px_2px_0px_#0f172a] transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl bg-[#fff9d4] hover:bg-[#fff0b3] border-2 border-[#0f172a] text-[#0f172a] text-xs font-mono font-bold shadow-[2px_2px_0px_#0f172a] transition-all hover:-translate-y-0.5"
               >
-                <SiGithub className="w-4 h-4 text-[#0f172a]" />
+                <SiGithub className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0f172a]" />
                 <span>@{username}</span>
               </a>
 
-              <span className="px-3 py-1.5 rounded-xl bg-[#fffdf5] border-2 border-[#0f172a] text-xs font-mono font-bold text-[#8c6239] shadow-[2px_2px_0px_#0f172a]">
+              <span className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-[#fffdf5] border-2 border-[#0f172a] text-[11px] sm:text-xs font-mono font-bold text-[#8c6239] shadow-[2px_2px_0px_#0f172a]">
                 {stats.totalContributions.toLocaleString('id-ID')} Kontribusi
               </span>
             </div>
 
             {/* year selector tabs */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 w-full sm:w-auto">
               {stats.availableYears.map((yearKey) => {
                 const isActive = selectedYear === yearKey;
                 return (
@@ -106,7 +106,7 @@ export const GithubActivitySection: React.FC = () => {
                     key={yearKey}
                     type="button"
                     onClick={() => setSelectedYear(yearKey)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
                       isActive
                         ? 'bg-[#0284c7] text-white shadow-[2px_2px_0px_#0f172a] border-2 border-[#0f172a] -translate-y-0.5'
                         : 'bg-[#fff9d4] text-[#475569] hover:bg-[#faeed1] hover:text-[#0f172a] border-2 border-[#0f172a] hover:-translate-y-0.5 shadow-[2px_2px_0px_#0f172a]'
@@ -120,7 +120,7 @@ export const GithubActivitySection: React.FC = () => {
           </div>
 
           {/* error state or heatmap grid */}
-          <div className="py-6">
+          <div className="py-4 sm:py-6">
             {error ? (
               <div className="p-6 rounded-2xl bg-[#fef2f2] border border-[#fecaca] text-center">
                 <p className="text-sm text-[#b91c1c] font-medium">
@@ -144,43 +144,43 @@ export const GithubActivitySection: React.FC = () => {
           </div>
 
           {/* metrics summary sub-cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-6 border-t border-[#e8dbc0]">
-            <div className="p-4 rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
-              <div className="flex items-center gap-2 text-[#8c6239] text-xs font-mono font-bold">
-                <GitCommit className="w-4 h-4 text-[#0284c7]" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pt-4 sm:pt-6 border-t border-[#e8dbc0]">
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[#8c6239] text-[10px] sm:text-xs font-mono font-bold">
+                <GitCommit className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
                 <span>TOTAL COMMIT</span>
               </div>
-              <div className="text-2xl font-black text-[#0f172a] mt-2">
+              <div className="text-xl sm:text-2xl font-black text-[#0f172a] mt-1.5 sm:mt-2">
                 {stats.totalContributions.toLocaleString('id-ID')}
               </div>
-              <span className="text-[11px] text-[#64748b] font-mono mt-0.5 block">
+              <span className="text-[10px] sm:text-[11px] text-[#64748b] font-mono mt-0.5 block truncate">
                 periode {formatYearLabel(selectedYear)}
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
-              <div className="flex items-center gap-2 text-[#8c6239] text-xs font-mono font-bold">
-                <Flame className="w-4 h-4 text-[#ea580c]" />
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[#8c6239] text-[10px] sm:text-xs font-mono font-bold">
+                <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ea580c]" />
                 <span>HARI TERAKTIF</span>
               </div>
-              <div className="text-2xl font-black text-[#0f172a] mt-2">
+              <div className="text-xl sm:text-2xl font-black text-[#0f172a] mt-1.5 sm:mt-2 truncate">
                 {stats.maxDay ? `${stats.maxDay.count} Commit` : '-'}
               </div>
-              <span className="text-[11px] text-[#64748b] font-mono mt-0.5 block">
+              <span className="text-[10px] sm:text-[11px] text-[#64748b] font-mono mt-0.5 block truncate">
                 {stats.maxDay ? formatIndonesianDateShort(stats.maxDay.date) : 'Tidak ada data'}
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
-              <div className="flex items-center gap-2 text-[#8c6239] text-xs font-mono font-bold">
-                <Calendar className="w-4 h-4 text-[#16a34a]" />
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#fff9d4] border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[#8c6239] text-[10px] sm:text-xs font-mono font-bold">
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#16a34a]" />
                 <span>HARI PRODUKTIF</span>
               </div>
-              <div className="text-2xl font-black text-[#0f172a] mt-2">
+              <div className="text-xl sm:text-2xl font-black text-[#0f172a] mt-1.5 sm:mt-2">
                 {stats.activeDaysCount} Hari
               </div>
-              <span className="text-[11px] text-[#64748b] font-mono mt-0.5 block">
-                rata-rata {stats.averagePerActiveDay} / hari aktif
+              <span className="text-[10px] sm:text-[11px] text-[#64748b] font-mono mt-0.5 block truncate">
+                avg {stats.averagePerActiveDay} / hari
               </span>
             </div>
 
@@ -188,15 +188,15 @@ export const GithubActivitySection: React.FC = () => {
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-2xl bg-[#0f172a] hover:bg-[#1e293b] text-white flex flex-col justify-between border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] transition-all hover:-translate-y-0.5 group cursor-pointer"
+              className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#0f172a] hover:bg-[#1e293b] text-white flex flex-col justify-between border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] transition-all hover:-translate-y-0.5 group cursor-pointer"
             >
-              <div className="flex items-center justify-between text-xs font-mono font-bold text-[#38bdf8]">
+              <div className="flex items-center justify-between text-[10px] sm:text-xs font-mono font-bold text-[#38bdf8]">
                 <span>PROFIL GITHUB</span>
-                <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
-              <div className="mt-2">
-                <div className="text-base font-black text-[#f8fafc]">@{username}</div>
-                <span className="text-[11px] text-[#94a3b8] font-mono">
+              <div className="mt-1.5 sm:mt-2">
+                <div className="text-sm sm:text-base font-black text-[#f8fafc] truncate">@{username}</div>
+                <span className="text-[10px] sm:text-[11px] text-[#94a3b8] font-mono block truncate">
                   Buka riwayat repositori &rarr;
                 </span>
               </div>

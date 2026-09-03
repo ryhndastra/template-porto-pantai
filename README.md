@@ -48,7 +48,7 @@ Semua data teks, proyek, kontak, dan keahlian terpusat rapi dalam satu file data
 - Buka file `src/data/portfolioData.ts`.
 - Ganti nama, bio, data pendidikan, kontak sosial media, dan riwayat pengalaman dengan data Anda sendiri.
 - Ganti avatar profil: taruh foto Anda di `public/` dan update `avatarUrl` di `src/data/portfolioData.ts`.
-- Ganti file CV: taruh file PDF resume Anda di `public/CV_REY.pdf`.
+- Ganti file CV: taruh file PDF resume Anda di `public/cv.pdf`.
 
 ### 4. Jalankan Development Server
 ```bash

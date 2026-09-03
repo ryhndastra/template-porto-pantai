@@ -131,7 +131,6 @@ export const EditorialProfile: React.FC = () => {
       id="about"
       ref={sectionRef}
       className="relative pt-24 pb-32 sm:pt-28 sm:pb-44 bg-[#fff9d4] overflow-hidden select-none"
-      style={{ perspective: '1200px' }}
     >
       <RebuildConstructionOverlay
         isRebuilding={floodState === 'rebuilding'}

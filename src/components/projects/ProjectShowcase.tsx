@@ -49,11 +49,11 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ onOpenProject 
       {/* pinned viewport stage */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* progress indicators */}
-        <div className="absolute top-20 right-6 sm:right-12 z-50 flex items-center gap-2 p-2 rounded-2xl bg-[#fffdf5] border-2 border-[#0f172a] shadow-[4px_4px_0px_#0f172a]">
+        <div className="absolute top-[76px] sm:top-24 right-4 sm:right-12 z-50 flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-[#fffdf5] border-2 border-[#0f172a] shadow-[2.5px_2.5px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a]">
           {[0, 1, 2, 3].map((idx) => (
             <div
               key={idx}
-              className="h-2.5 rounded-full bg-[#faeed1] border border-[#0f172a] overflow-hidden w-7 sm:w-10"
+              className="h-2 sm:h-2.5 rounded-full bg-[#faeed1] border border-[#0f172a] overflow-hidden w-5 sm:w-10"
             >
               <motion.div
                 className="h-full bg-[#0284c7]"

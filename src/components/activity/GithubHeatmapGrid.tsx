@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ContributionDay } from '../../hooks/useGithubContributions';
 
@@ -43,6 +43,16 @@ export const GithubHeatmapGrid: React.FC<GithubHeatmapGridProps> = ({ contributi
     posY: number;
   } | null>(null);
 
+  // auto scroll to latest contribution weeks on mobile screen
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollEl = containerRef.current.querySelector('.heatmap-scroll-wrapper');
+      if (scrollEl && window.innerWidth < 640) {
+        scrollEl.scrollLeft = scrollEl.scrollWidth;
+      }
+    }
+  }, [contributions, loading]);
+
   if (loading) {
     return (
       <div className="w-full overflow-x-auto py-8">
@@ -71,20 +81,22 @@ export const GithubHeatmapGrid: React.FC<GithubHeatmapGridProps> = ({ contributi
     }
   });
 
-  // calculate column positions for month labels
+  // calculate column positions for month labels with minimum spacing to prevent collision
   const monthLabels: { month: string; colIndex: number }[] = [];
   let previousMonth = -1;
+  let lastColIdx = -10;
 
   weeks.forEach((week, colIdx) => {
     const firstDayOfWeek = week[0];
     if (firstDayOfWeek) {
       const monthIndex = new Date(firstDayOfWeek.date).getMonth();
-      if (monthIndex !== previousMonth) {
+      if (monthIndex !== previousMonth && colIdx - lastColIdx >= 3) {
         monthLabels.push({
           month: MONTH_NAMES[monthIndex],
           colIndex: colIdx
         });
         previousMonth = monthIndex;
+        lastColIdx = colIdx;
       }
     }
   });
@@ -103,7 +115,7 @@ export const GithubHeatmapGrid: React.FC<GithubHeatmapGridProps> = ({ contributi
   };
 
   return (
-    <div ref={containerRef} className="relative w-full rounded-2xl bg-[#fff9d4]/70 border-2 border-[#0f172a] p-4 sm:p-6 shadow-[3px_3px_0px_#0f172a]">
+    <div ref={containerRef} className="relative w-full rounded-2xl bg-[#fff9d4]/70 border-2 border-[#0f172a] p-3.5 sm:p-6 shadow-[3px_3px_0px_#0f172a]">
       <AnimatePresence>
         {hoveredCell && (
           <motion.div
@@ -129,7 +141,7 @@ export const GithubHeatmapGrid: React.FC<GithubHeatmapGridProps> = ({ contributi
         )}
       </AnimatePresence>
 
-      <div className="overflow-x-auto pb-2 select-none scrollbar-thin">
+      <div className="heatmap-scroll-wrapper overflow-x-auto pb-2 select-none no-scrollbar sm:scrollbar-thin">
         <div className="min-w-[760px] flex flex-col">
           {/* month headers */}
           <div className="flex text-[11px] font-mono font-bold text-[#8c6239] mb-2.5 pl-8">
@@ -173,24 +185,24 @@ export const GithubHeatmapGrid: React.FC<GithubHeatmapGridProps> = ({ contributi
               ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* footer */}
-          <div className="mt-5 flex items-center justify-between text-xs text-[#64748b] font-mono pt-3 border-t border-[#e8dbc0]">
-            <span className="text-[11px] text-[#8c6239] font-medium">
-              Data sinkron otomatis dengan riwayat git GitHub
-            </span>
+      {/* footer */}
+      <div className="mt-3.5 sm:mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[#64748b] font-mono pt-3 border-t border-[#e8dbc0]">
+        <span className="text-[10px] sm:text-[11px] text-[#8c6239] font-medium">
+          Data sinkron otomatis dengan riwayat git GitHub
+        </span>
 
-            <div className="flex items-center gap-1.5">
-              <span className="text-[11px] mr-1 text-[#8c6239]">Sedikit</span>
-              {[0, 1, 2, 3, 4].map((level) => (
-                <div
-                  key={level}
-                  className={`w-3 h-3 rounded-[3px] border ${getBeachLevelColor(level)}`}
-                />
-              ))}
-              <span className="text-[11px] ml-1 text-[#8c6239]">Banyak</span>
-            </div>
-          </div>
+        <div className="flex items-center gap-1.5 self-end sm:self-auto">
+          <span className="text-[10px] sm:text-[11px] mr-1 text-[#8c6239]">Sedikit</span>
+          {[0, 1, 2, 3, 4].map((level) => (
+            <div
+              key={level}
+              className={`w-3 h-3 rounded-[3px] border ${getBeachLevelColor(level)}`}
+            />
+          ))}
+          <span className="text-[10px] sm:text-[11px] ml-1 text-[#8c6239]">Banyak</span>
         </div>
       </div>
     </div>

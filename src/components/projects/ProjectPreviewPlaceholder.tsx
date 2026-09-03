@@ -38,13 +38,17 @@ export const ProjectPreviewPlaceholder: React.FC<ProjectPreviewPlaceholderProps>
       </div>
 
       {/* content viewport */}
-      <div className="relative w-full flex-1 min-h-0 bg-[#ffffff] flex items-center justify-center overflow-hidden p-2 sm:p-3">
+      <div className="relative w-full flex-1 min-h-0 bg-[#f8fafc] flex items-center justify-center overflow-hidden">
         {!imageError && project.imageUrl ? (
           <img
             src={project.imageUrl}
             alt={project.title}
             onError={() => setImageError(true)}
-            className="w-full h-full object-contain object-center transition-transform duration-500 group-hover/preview:scale-[1.02]"
+            className={`w-full h-full ${
+              project.imageFit === 'contain' || isMobile
+                ? 'object-contain object-center p-3 sm:p-4'
+                : 'object-cover object-top'
+            } transition-transform duration-500 group-hover/preview:scale-[1.02]`}
           />
         ) : (
           // fallback placeholder

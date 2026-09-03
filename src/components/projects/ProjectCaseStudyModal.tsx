@@ -68,24 +68,24 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl bg-[#fffdf5] rounded-[32px] border-4 border-[#0f172a] shadow-[12px_12px_0px_#0f172a] p-6 sm:p-8 space-y-6 z-10 my-8 max-h-[90vh] overflow-y-auto"
+          className="relative w-full max-w-4xl bg-[#fffdf5] rounded-2xl sm:rounded-[32px] border-2 sm:border-4 border-[#0f172a] shadow-[6px_6px_0px_#0f172a] sm:shadow-[12px_12px_0px_#0f172a] p-4 sm:p-8 space-y-4 sm:space-y-6 z-10 my-4 sm:my-8 max-h-[92vh] overflow-y-auto"
         >
           {/* modal header and close button */}
-          <div className="flex items-start justify-between gap-4 border-b-2 border-[#0f172a]/20 pb-4">
+          <div className="flex items-start justify-between gap-3 sm:gap-4 border-b-2 border-[#0f172a]/20 pb-3 sm:pb-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-mono font-black uppercase tracking-wider text-[#0f172a] bg-[#fde047] px-2.5 py-1 rounded-lg border-2 border-[#0f172a]">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-[#0f172a] bg-[#fde047] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg border-2 border-[#0f172a]">
                   {project.category === 'fullstack' ? 'FULL-STACK WEB ARCHITECTURE' : 'MOBILE FLUTTER SYSTEM'}
                 </span>
-                <span className="text-xs font-mono font-bold text-[#64748b]">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-[#64748b]">
                   // {project.role}
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-[#0f172a] tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-black text-[#0f172a] tracking-tight">
                 {project.title}
               </h3>
-              <p className="text-sm font-mono font-bold text-[#0284c7] mt-0.5">
+              <p className="text-xs sm:text-sm font-mono font-bold text-[#0284c7] mt-0.5">
                 {project.subtitle}
               </p>
             </div>
@@ -93,10 +93,10 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2.5 rounded-2xl bg-[#fff9d4] hover:bg-[#fee2e2] border-2 border-[#0f172a] text-[#0f172a] hover:text-[#dc2626] shadow-[3px_3px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 active:shadow-none transition-all cursor-pointer shrink-0"
+              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-[#fff9d4] hover:bg-[#fee2e2] border-2 border-[#0f172a] text-[#0f172a] hover:text-[#dc2626] shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 active:shadow-none transition-all cursor-pointer shrink-0"
               aria-label="Tutup studi kasus"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
@@ -108,7 +108,7 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({
           />
 
           {/* performance metrics */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
             {project.metrics.map((m, idx) => {
               const bg = idx === 0 ? 'bg-[#e0f2fe]' : idx === 1 ? 'bg-[#fef9c3]' : 'bg-[#dcfce7]';
               const labelColor = idx === 0 ? 'text-[#0369a1]' : idx === 1 ? 'text-[#854d0e]' : 'text-[#15803d]';
@@ -116,12 +116,12 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({
               return (
                 <div
                   key={idx}
-                  className={`p-3.5 rounded-2xl ${bg} border-2 border-[#0f172a] text-center shadow-[3px_3px_0px_#0f172a]`}
+                  className={`p-2 sm:p-3.5 rounded-xl sm:rounded-2xl ${bg} border-2 border-[#0f172a] text-center shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] flex flex-col justify-center`}
                 >
-                  <div className={`text-[10px] font-mono font-bold uppercase truncate ${labelColor}`}>
+                  <div className={`text-[9px] sm:text-[10px] font-mono font-bold uppercase ${labelColor} leading-tight`}>
                     {m.label}
                   </div>
-                  <div className="text-xs sm:text-base font-black text-[#0f172a] mt-0.5 truncate">
+                  <div className="text-[11px] sm:text-base font-black text-[#0f172a] mt-0.5 leading-tight break-words">
                     {m.value}
                   </div>
                 </div>
@@ -130,12 +130,12 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({
           </div>
 
           {/* project mandate and overview */}
-          <div className="space-y-2.5">
-            <h4 className="text-xs font-mono uppercase font-black text-[#0f172a] flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#0284c7]" />
+          <div className="space-y-2">
+            <h4 className="text-[11px] sm:text-xs font-mono uppercase font-black text-[#0f172a] flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
               <span>Latar Belakang &amp; Mandat Proyek</span>
             </h4>
-            <p className="text-sm sm:text-base text-[#334155] leading-relaxed bg-[#fff9d4] p-5 rounded-2xl border-2 border-[#0f172a]/30 font-medium">
+            <p className="text-xs sm:text-base text-[#334155] leading-relaxed bg-[#fff9d4] p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 border-[#0f172a]/30 font-medium">
               {project.description}
             </p>
           </div>

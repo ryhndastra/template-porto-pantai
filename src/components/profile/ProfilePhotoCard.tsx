@@ -11,15 +11,17 @@ interface ProfilePhotoCardProps {
 export const ProfilePhotoCard: React.FC<ProfilePhotoCardProps> = ({ isFlooded }) => {
   const { tiltProps } = useCardTilt(6);
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
+
   return (
     <motion.div
       animate={
         isFlooded
           ? {
-              rotate: -28,
-              x: -36,
-              y: 78,
-              scale: 0.94,
+              rotate: isMobile ? -5 : -24,
+              x: isMobile ? 0 : -32,
+              y: isMobile ? 20 : 70,
+              scale: isMobile ? 0.98 : 0.94,
               transition: { type: 'spring', stiffness: 160, damping: 16 }
             }
           : {

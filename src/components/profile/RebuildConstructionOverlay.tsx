@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Hammer, Wrench, HardHat, Check, Cpu, Terminal } from 'lucide-react';
 
@@ -11,7 +12,12 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
   isRebuilding,
   progress
 }) => {
+  const [mounted, setMounted] = useState(false);
   const [comicTextIndex, setComicTextIndex] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const comicSounds = [
     { icon: <Hammer className="w-5 h-5 text-[#f59e0b]" />, label: 'CLANK!' },
@@ -34,7 +40,9 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
     return () => clearInterval(interval);
   }, [isRebuilding]);
 
-  return (
+  if (!mounted || typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {isRebuilding && (
         <motion.div
@@ -42,7 +50,7 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, pointerEvents: 'none', transition: { duration: 0.3 } }}
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden pointer-events-auto select-none"
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden pointer-events-auto select-none"
         >
           <div className="absolute inset-0 bg-[#fff9d4]/92 backdrop-blur-xl" />
 
@@ -125,7 +133,7 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
                 rotate: { repeat: Infinity, duration: 1.6, ease: 'easeInOut' },
                 default: { type: 'spring', stiffness: 160, damping: 16 }
               }}
-              className="w-[85vw] sm:w-[70vw] max-w-4xl h-[65vh]"
+              className="absolute inset-0 m-auto w-[85vw] sm:w-[70vw] max-w-4xl h-[65vh] pointer-events-none"
             >
               <svg viewBox="0 0 600 450" fill="none" className="w-full h-full drop-shadow-2xl">
                 <circle cx="300" cy="225" r="140" fill="#ffffff" />
@@ -159,8 +167,8 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
             ))}
           </div>
 
-          <div className="relative z-20 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-6">
-            <div className="relative w-72 h-36 flex items-center justify-center">
+          <div className="relative z-20 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-6 max-w-lg mx-4 sm:mx-6 scale-90 sm:scale-100">
+            <div className="relative w-60 h-28 sm:w-72 sm:h-36 flex items-center justify-center scale-90 sm:scale-100">
               {/* Hammer */}
               <motion.div
                 animate={{
@@ -173,9 +181,9 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
                   duration: 0.32,
                   ease: 'easeInOut'
                 }}
-                className="absolute left-0 p-4 rounded-3xl bg-[#f59e0b] text-white shadow-2xl border-4 border-white drop-shadow-xl"
+                className="absolute left-0 p-3 sm:p-4 rounded-2xl sm:rounded-3xl bg-[#f59e0b] text-white shadow-2xl border-4 border-white drop-shadow-xl"
               >
-                <Hammer className="w-10 h-10" />
+                <Hammer className="w-8 h-8 sm:w-10 sm:h-10" />
               </motion.div>
 
               {/* Hard Hat */}
@@ -189,9 +197,9 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
                   duration: 0.5,
                   ease: 'easeInOut'
                 }}
-                className="p-6 rounded-[32px] bg-[#0f172a] text-[#f59e0b] shadow-2xl border-4 border-white"
+                className="p-4 sm:p-6 rounded-[28px] sm:rounded-[32px] bg-[#0f172a] text-[#f59e0b] shadow-2xl border-4 border-white"
               >
-                <HardHat className="w-14 h-14" />
+                <HardHat className="w-10 h-10 sm:w-14 sm:h-14" />
               </motion.div>
 
               <motion.div
@@ -205,9 +213,9 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
                   duration: 0.36,
                   ease: 'easeInOut'
                 }}
-                className="absolute right-0 p-4 rounded-3xl bg-[#0284c7] text-white shadow-2xl border-4 border-white drop-shadow-xl"
+                className="absolute right-0 p-3 sm:p-4 rounded-2xl sm:rounded-3xl bg-[#0284c7] text-white shadow-2xl border-4 border-white drop-shadow-xl"
               >
-                <Wrench className="w-10 h-10" />
+                <Wrench className="w-8 h-8 sm:w-10 sm:h-10" />
               </motion.div>
 
               {/* Comic Impact */}
@@ -233,29 +241,29 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
             </div>
 
             {/* Comic Sound Effect */}
-            <div className="space-y-2">
+            <div className="space-y-1.5 sm:space-y-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={comicTextIndex}
                   initial={{ scale: 0.5, rotate: -6 }}
-                  animate={{ scale: 1.12, rotate: 3 }}
+                  animate={{ scale: 1.08, rotate: 3 }}
                   exit={{ scale: 0.6, rotate: 6 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-2xl bg-[#0f172a] text-[#f59e0b] text-base sm:text-lg font-black font-mono shadow-2xl border-2 border-white tracking-wider"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-2xl bg-[#0f172a] text-[#f59e0b] text-sm sm:text-lg font-black font-mono shadow-2xl border-2 border-white tracking-wider"
                 >
                   {comicSounds[comicTextIndex].icon}
                   <span>*{comicSounds[comicTextIndex].label}*</span>
                 </motion.div>
               </AnimatePresence>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-[#0f172a] tracking-tight">
+              <h3 className="text-lg sm:text-3xl font-black text-[#0f172a] tracking-tight px-2">
                 Sedang Membangun Ulang Pantai...
               </h3>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full max-w-sm space-y-2 pt-2">
-              <div className="w-full h-4 rounded-full bg-white/90 border-2 border-[#dfcca8] p-0.5 overflow-hidden shadow-xl">
+            <div className="w-full max-w-xs sm:max-w-sm space-y-1.5 sm:space-y-2 pt-1 sm:pt-2">
+              <div className="w-full h-3.5 sm:h-4 rounded-full bg-white/90 border-2 border-[#dfcca8] p-0.5 overflow-hidden shadow-xl">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-[#f59e0b] via-[#0284c7] to-[#38bdf8] shadow-md"
                   style={{ width: `${progress}%` }}
@@ -265,12 +273,13 @@ export const RebuildConstructionOverlay: React.FC<RebuildConstructionOverlayProp
 
               <div className="flex items-center justify-between text-xs font-mono font-bold text-[#8c6239] px-1">
                 <span>RECONSTRUCTION PROGRESS</span>
-                <span className="text-base font-black text-[#0f172a]">{progress}%</span>
+                <span className="text-sm sm:text-base font-black text-[#0f172a]">{progress}%</span>
               </div>
             </div>
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };

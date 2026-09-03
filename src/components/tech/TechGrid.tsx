@@ -94,10 +94,13 @@ export const TechGrid: React.FC<TechGridProps> = ({ onOpenProject }) => {
         </div>
 
         {/* architecture layer cards */}
-        <div className="mt-10 space-y-4">
-          <div className="flex items-center justify-between text-xs font-mono font-bold text-[#64748b] uppercase tracking-wider">
-            <span>Daftar Kategori & Layer</span>
-            <span>Klik kartu atau icon untuk melihat detail</span>
+        <div className="mt-8 sm:mt-10 space-y-3 sm:space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono font-bold text-[#64748b] uppercase tracking-wider pb-1 sm:pb-0">
+            <span>Daftar Kategori &amp; Layer</span>
+            <span className="text-[10px] sm:text-xs text-[#64748b]">
+              <span className="sm:hidden">Tap kartu atau icon untuk detail</span>
+              <span className="hidden sm:inline">Klik kartu atau icon untuk melihat detail</span>
+            </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">

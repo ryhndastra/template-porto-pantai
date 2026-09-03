@@ -55,6 +55,18 @@
   background: #0284c7;
 }
 
+/* hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 @keyframes waveWaterRoll {
   0% {
     background-position: 0px 0px, 0% 50%;

@@ -244,6 +244,7 @@ export const projectsData: Project[] = [
     isPrivateRepo: true,
     privateRepoReason: 'Repository privat karena hak cipta institusi & kerahasiaan data',
     imageUrl: '/projects/CibendaMart.png',
+    imageFit: 'cover',
     featured: true,
     metrics: [
       { label: 'Engineering', value: 'Full-Stack Developer' },
@@ -282,6 +283,7 @@ export const projectsData: Project[] = [
     isMobileApp: true,
     demoStatusLabel: 'Aplikasi Mobile Native (Demo/APK on request)',
     imageUrl: '/projects/villa.png',
+    imageFit: 'contain',
     featured: true,
     metrics: [
       { label: 'Mobile Engine', value: 'Flutter & Dart' },
@@ -324,6 +326,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/ryhndastra/kalorin-ai',
     demoUrl: 'https://kalorin-ai.vercel.app',
     imageUrl: '/projects/kalorinLogo.png',
+    imageFit: 'contain',
     featured: true,
     metrics: [
       { label: 'Capstone Team', value: '6 Engineers' },
